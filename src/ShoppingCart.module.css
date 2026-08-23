@@ -1,0 +1,48 @@
+.cartItem {
+    border: 3px solid white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 5rem;
+    justify-content: center;
+    margin: 1rem 20rem;
+    align-items: center;
+    font-size: 1.3rem;
+    /* max-width: 400px; */
+
+}
+
+button {
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: black;
+    color: white;
+    padding: 0.3rem;
+    margin: 0.1rem;
+    border: 3px solid white;
+}
+
+button:hover {
+    background-color: grey;
+}
+
+.totalPrice {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.cartList {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+p {
+    margin: 0.2em;
+}
+
+h3 {
+    margin: 0.2rem;
+}
+
+img {
+    margin: 0.2rem;
+}

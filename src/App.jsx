@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router';
-// import './App.css'
-// import Homepage from './Homepage';
-// import Shop from './Shop';
-// import ShoppingCart from './ShoppingCart';
-
 import { Link } from "react-router";
 
 function App() {

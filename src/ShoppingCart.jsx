@@ -1,10 +1,12 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useOutletContext } from "react-router";
 import { calcItemsInCart } from "./helpers";
+import styles from "./ShoppingCart.module.css";
 
 function ShoppingCart() {
-    const {items, setItems, error, setError, loading, setLoading, cartItems, setCartItems, totalItemsInCart, setTotalItemsInCart } = useOutletContext();
-    
+    const { cartItems, setCartItems, totalItemsInCart, setTotalItemsInCart } = useOutletContext();
+    // const {items, setItems, error, setError, loading, setLoading, cartItems, setCartItems, totalItemsInCart, setTotalItemsInCart } = useOutletContext();
+
     if (totalItemsInCart === 0) return <h2>cart empty</h2>
 
     function getTotalPrice() {
@@ -13,7 +15,7 @@ function ShoppingCart() {
             const subtotal = cartItems[i].price * cartItems[i].amount;
             total += subtotal;
         }
-        return total;
+        return total.toFixed(2);
     }
 
     function handleIncrement(targetItem) {
@@ -37,7 +39,7 @@ function ShoppingCart() {
                 }
                 return item;
             })
-            setCartItems(prev => newList);
+            setCartItems(newList);
             setTotalItemsInCart(calcItemsInCart(newList));
         }
     }
@@ -51,14 +53,16 @@ function ShoppingCart() {
     function CartItem({targetItem}) {
         const subtotal = targetItem.price * targetItem.amount;
         return (
-            <div className="cartItem">
+            <div className={styles.cartItem}>
                 <h3>{targetItem.title}</h3>
                 <img src={targetItem.image} />
                 <p>Amount: {targetItem.amount}</p>
                 <p>Subtotal: {subtotal} </p>
-                <button onClick={() => handleIncrement(targetItem)}>+</button>
-                <button onClick={() => handleDecrement(targetItem)}>-</button>
-                <button onClick = {() => handleDeleteCartItem(targetItem)}>remove item</button>
+                <div>
+                    <button onClick={() => handleIncrement(targetItem)}>+</button>
+                    <button onClick={() => handleDecrement(targetItem)}>-</button>
+                    <button onClick = {() => handleDeleteCartItem(targetItem)}>remove item</button>
+                </div>
             </div>
         )
     }
@@ -72,8 +76,8 @@ function ShoppingCart() {
     return (
         <>
             <h2>cart contents</h2>
-            <ul>{cartItemsList}</ul>
-            <p>Total price: {getTotalPrice()}</p>
+            <ul className={styles.cartList}>{cartItemsList}</ul>
+            <p className={styles.totalPrice}>Total price: {getTotalPrice()}</p>
         </>
     )
 }

@@ -1,9 +1,11 @@
 import { useOutletContext } from "react-router";
 import { useState } from "react";
 import { calcItemsInCart } from "./helpers";
+import styles from "./Shop.module.css";
 
 function Shop() {
-    const {items, setItems, error, setError, loading, setLoading, cartItems, setCartItems, totalItemsInCart, setTotalItemsInCart } = useOutletContext();
+    const {items, error, loading, cartItems, setCartItems, setTotalItemsInCart } = useOutletContext();
+    // const {items, setItems, error, setError, loading, setLoading, cartItems, setCartItems, totalItemsInCart, setTotalItemsInCart } = useOutletContext();
     
     if (loading) return <h2>Loading...</h2>;
     if (error !== null) return <h2>A network error has occured!</h2>;
@@ -65,12 +67,17 @@ function Shop() {
 
 
         return (
-            <div className="card-container">
+            <div className={styles.cardContainer}>
                 <h3>{targetItem.title}</h3>
                 <img src={targetItem.image} />
-                <p>{targetItem.description}</p>
+                <p className={styles.description}>{targetItem.description}</p>
                 <p>Price: ${targetItem.price}</p>
-                <input value={numberOfItem} onChange={handleInputChange} /><button onClick={() => handleIncrement()}>+</button><button onClick={() => handleDecrement()}>-</button><button onClick={() => addItemToCart(targetItem, numberOfItem)}>Add to Cart</button>
+                <input value={numberOfItem} onChange={handleInputChange} />
+                <div>
+                    <button onClick={() => handleIncrement()}>+</button>
+                    <button onClick={() => handleDecrement()}>-</button>
+                    <button onClick={() => addItemToCart(targetItem, numberOfItem)}>Add to Cart</button>
+                </div>
             </div>
         )
     }

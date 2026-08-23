@@ -6,7 +6,3 @@ export function calcItemsInCart(arraytoCheck) {
     return count;
 }
 
-export function removeItemFromArray(targetItem, targetArray) {
-    const newList = targetArray.filter(item => item.id !== targetItem.id);
-    return newList;
-}
